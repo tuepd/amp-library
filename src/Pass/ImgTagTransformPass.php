@@ -244,7 +244,11 @@ class ImgTagTransformPass extends BasePass
         static $image_dimensions_cache = [];
 
         $wcss = new CssLengthAndUnit($el->attr('width'), false);
-        $hcss = new CssLengthAndUnit($el->attr('height'), false);
+        if($el->attr('height')!=''){
+            $hcss = new CssLengthAndUnit($el->attr('height'), false);
+        }else{
+            $hcss = new CssLengthAndUnit($el->attr('width'), false);
+        }
 
         if ($wcss->is_set && $wcss->is_valid && $wcss->is_set && $wcss->is_valid && $wcss->unit == $hcss->unit) {
             return true;
